@@ -37,7 +37,7 @@ Its rejection made us write this proposal.
 ### Initialize intermediate variable with `v`
 
 It may be undesirable for some of the reasons
-selection and iteration statemets have been getting space for initialization.
+selection and iteration statements have been getting space for initialization.
 
 In some contexts it is impossible,
 such as member intializer lists and requires clauses.
