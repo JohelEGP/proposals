@@ -27,12 +27,12 @@ that better captures intent and is potentially more performant.
 
 ### Chaining Comparisons (rejected)
 
-P0893 \[1] would have allowed us to write `lo <= v <= hi`.
+P0893 [1] would have allowed us to write `lo <= v <= hi`.
 Its rejection made us write this proposal.
 
 > There was no consensus on making comparison operators chain,
 > nor was there encouragement for further work in that area. \
-> -- P1018R2 \[2]
+> -- P1018R2 [2]
 
 ### Initialize intermediate variable with `v`
 
@@ -50,7 +50,7 @@ This works, at the cost of much syntactical noise on par with repeating `v`:
 
 ## Wording
 
-Add the following declarations to \[algorithm.syn] after those of `clamp`.
+Add the following declarations to [algorithm.syn] after those of `clamp`.
 
 ```C++
 template<class T>
@@ -65,7 +65,7 @@ namespace ranges {
 }
 ```
 
-Add the following detailed specifications to \[alg.clamp] after those of `clamp`.
+Add the following detailed specifications to [alg.clamp] after those of `clamp`.
 
 ```C++
 template<class T>
@@ -87,7 +87,7 @@ _Returns:_ `true` if
 - `hi` is not less than `v`. \
 Otherwise, `false`.
 
-\[ _Note:_ If NaN is avoided, `T` can be a floating-point type. -- _end note_ ]
+[ _Note:_ If NaN is avoided, `T` can be a floating-point type. -- _end note_ ]
 
 _Complexity:_ At most two comparisons and
 three applications of the projection, if any.
