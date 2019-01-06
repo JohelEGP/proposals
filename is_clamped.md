@@ -92,6 +92,33 @@ Otherwise, `false`.
 _Complexity:_ At most two comparisons and
 three applications of the projection, if any.
 
+## Possible implementation
+
+```C++
+template<class T>
+  constexpr bool is_clamped(const T& v, const T& lo, const T& hi)
+{
+  return !(v < lo) && !(hi < v);
+}
+
+template<class T, class Compare>
+  constexpr bool is_clamped(const T& v, const T& lo, const T& hi, Compare comp)
+{
+  return !comp(v, lo) && !comp(hi, v);
+}
+
+namespace ranges {
+  template<class T, class Proj = identity,
+           IndirectStrictWeakOrder<projected<const T*, Proj>> Comp = ranges::less<>>
+    constexpr bool is_clamped(const T& v, const T& lo, const T& hi, Comp comp = {}, Proj proj = {})
+  {
+    auto&& pv{invoke(proj, v)};
+    return !invoke(comp, pv, invoke(proj, lo)) &&
+           !invoke(comp, invoke(proj, hi), pv);
+  }
+}
+```
+
 ## Revision history
 
 - _cv_ `void` -> R0
