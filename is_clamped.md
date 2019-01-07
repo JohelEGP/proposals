@@ -1,5 +1,5 @@
 Doc. no:  DxxxxR0 \
-Date:     2019-01-01 \
+Date:     2019-01-07 \
 Reply-to: Johel Guerrero <johelegp@gmail.com> \
 Audience: Library Incubator \
 Source:   https://github.com/johelegp/proposals/blob/master/is_clamped.md
@@ -122,7 +122,7 @@ namespace ranges {
 ## Revision history
 
 - _cv_ `void` -> R0
-    + `2019y/January/1`, pre-Kona.
+    + `2019y/January/7`, pre-Kona.
 
 ## Related proposals
 
