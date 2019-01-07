@@ -124,7 +124,14 @@ namespace ranges {
 - _cv_ `void` -> R0
     + `2019y/January/1`, pre-Kona.
 
+## Related proposals
+
+| Paper     | Title                  | Relation                         |
+| --------- | ---------------------- | -------------------------------- |
+| P1243 [3] | Rangify New Algorithms | Introduces `std::ranges::clamp`. |
+
 ## References
 
 \[1]: https://wg21.link/P0893 \
-\[2]: https://wg21.link/P1018r2
+\[2]: https://wg21.link/P1018r2 \
+\[3]: https://wg21.link/P1234
