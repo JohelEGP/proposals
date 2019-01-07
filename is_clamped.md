@@ -11,6 +11,14 @@ Source:   https://github.com/johelegp/proposals/blob/master/is_clamped.md
 Introduce `std::is_clamped(v, lo, hi)` to mean `lo <= v && v <= hi`,
 except that `v` is only evaluated once.
 
+| Now                                                | Proposed alternative                             |
+| -------------------------------------------------- | ------------------------------------------------ |
+| `Axis::x <= Coord::axis && Coord::axis <= Axis::z` | `std::is_clamped(Coord::axis, Axis::x, Axis::z)` |
+
+| Now                                          | Proposed alternative + P0330 [4]           |
+| -------------------------------------------- | ------------------------------------------ |
+| `1u <= digits.size() && digits.size() <= 7u` | `std::is_clamped(digits.size(), 1uz, 7uz)` |
+
 ## Problem
 
 Expressions equivalent to `lo <= v && v <= hi` are common.
@@ -134,4 +142,5 @@ namespace ranges {
 
 \[1]: https://wg21.link/P0893 \
 \[2]: https://wg21.link/P1018r2 \
-\[3]: https://wg21.link/P1234
+\[3]: https://wg21.link/P1234 \
+\[4]: https://wg21.link/P0330
