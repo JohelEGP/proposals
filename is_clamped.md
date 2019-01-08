@@ -120,9 +120,9 @@ namespace ranges {
            IndirectStrictWeakOrder<projected<const T*, Proj>> Comp = ranges::less<>>
     constexpr bool is_clamped(const T& v, const T& lo, const T& hi, Comp comp = {}, Proj proj = {})
   {
-    auto&& pv{invoke(proj, v)};
-    return !invoke(comp, pv, invoke(proj, lo)) &&
-           !invoke(comp, invoke(proj, hi), pv);
+    auto&& pv{INVOKE(proj, v)};
+    return !INVOKE(comp, pv, INVOKE(proj, lo)) &&
+           !INVOKE(comp, INVOKE(proj, hi), pv);
   }
 }
 ```
