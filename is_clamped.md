@@ -142,5 +142,5 @@ namespace ranges {
 
 \[1]: https://wg21.link/P0893 \
 \[2]: https://wg21.link/P1018r2 \
-\[3]: https://wg21.link/P1234 \
+\[3]: https://wg21.link/P1243 \
 \[4]: https://wg21.link/P0330
