@@ -132,15 +132,29 @@ namespace ranges {
 }
 ```
 
+## Polls
+
+### Kona
+
+- Reword `ranges::is_clamped` to preserve the `Boolean` type of the
+  expression of the return statement in the possible implementation above.
+
 ## Related proposals
 
 | Paper     | Title                  | Relation                         |
 | --------- | ---------------------- | -------------------------------- |
 | P1243 [3] | Rangify New Algorithms | Introduces `std::ranges::clamp`. |
 
+## Acknowledgements
+
+Thanks to
+Ray Hamel
+for their comments in the std-proposals thread [5].
+
 ## References
 
 \[1]: https://wg21.link/P0893 \
 \[2]: https://wg21.link/P1018r2 \
 \[3]: https://wg21.link/P1243 \
-\[4]: https://wg21.link/P0330
+\[4]: https://wg21.link/P0330 \
+\[5]: https://groups.google.com/a/isocpp.org/forum/?fromgroups#!topic/std-proposals/LDhzb-58sV4
