@@ -1,5 +1,5 @@
 Doc. no:  DxxxxR0 \
-Date:     2019-01-07 \
+Date:     2019-01-09 \
 Reply-to: Johel Guerrero <johelegp@gmail.com> \
 Audience: Library Incubator \
 Source:   https://github.com/johelegp/proposals/blob/master/is_clamped.md
@@ -18,6 +18,11 @@ except that `v` is only evaluated once.
 | Now                                          | Proposed alternative + P0330 [4]           |
 | -------------------------------------------- | ------------------------------------------ |
 | `1u <= digits.size() && digits.size() <= 7u` | `std::is_clamped(digits.size(), 1uz, 7uz)` |
+
+## Revision history
+
+- _cv_ `void` -> R0
+    + `2019y/January/9`, pre-Kona.
 
 ## Problem
 
@@ -126,11 +131,6 @@ namespace ranges {
   }
 }
 ```
-
-## Revision history
-
-- _cv_ `void` -> R0
-    + `2019y/January/7`, pre-Kona.
 
 ## Related proposals
 
