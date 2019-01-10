@@ -61,6 +61,15 @@ This works, at the cost of much syntactical noise on par with repeating `v`:
 - `[&] { const auto& w{v}; return `_`what we actually care about`_`; }()`, or
 - `[](const auto& v) { return `_`what we actually care about`_`; }(v)`.
 
+### Safe integral comparisons' `std::in_range`
+
+Vicente J. Botet Escriba made us aware [6]
+of `std::in_range` proposed in P0586 [7].
+Its name suggests similarity to our proposed `std::is_clamped`.
+However, it checks whether an integral value is in the range of an integral type
+with safe integral comparisons proposed in the same paper.
+Neither can subsume the other.
+
 ### Bikeshedding
 
 The following have been suggested of the proposed `std::is_clamped` design:
@@ -160,7 +169,8 @@ namespace ranges {
 ## Acknowledgements
 
 Thanks to
-Ray Hamel
+Ray Hamel,
+Vicente J. Botet Escriba,
 and everyone else for their comments in the std-proposals thread [5].
 
 ## References
@@ -169,4 +179,7 @@ and everyone else for their comments in the std-proposals thread [5].
 [2] Evolution status after San Diego 2018, https://wg21.link/P1018r2 \
 [3] Rangify New Algorithms, https://wg21.link/P1243 \
 [4] Literal Suffixes for ptrdiff_t and size_t, https://wg21.link/P0330 \
-[5] is_clamped, https://groups.google.com/a/isocpp.org/forum/?fromgroups#!topic/std-proposals/LDhzb-58sV4
+[5] is_clamped,
+https://groups.google.com/a/isocpp.org/forum/?fromgroups#!topic/std-proposals/LDhzb-58sV4 \
+[6] Personal communications \
+[7] Safe integral comparisons, https://wg21.link/P0586
