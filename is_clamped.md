@@ -165,8 +165,8 @@ and everyone else for their comments in the std-proposals thread [5].
 
 ## References
 
-\[1]: https://wg21.link/P0893 \
-\[2]: https://wg21.link/P1018r2 \
-\[3]: https://wg21.link/P1243 \
-\[4]: https://wg21.link/P0330 \
-\[5]: https://groups.google.com/a/isocpp.org/forum/?fromgroups#!topic/std-proposals/LDhzb-58sV4
+[1] Chaining Comparisons, https://wg21.link/P0893 \
+[2] Evolution status after San Diego 2018, https://wg21.link/P1018r2 \
+[3] Rangify New Algorithms, https://wg21.link/P1243 \
+[4] Literal Suffixes for ptrdiff_t and size_t, https://wg21.link/P0330 \
+[5] is_clamped, https://groups.google.com/a/isocpp.org/forum/?fromgroups#!topic/std-proposals/LDhzb-58sV4
