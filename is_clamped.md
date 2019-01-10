@@ -1,5 +1,5 @@
 Doc. no:  DxxxxR0 \
-Date:     2019-01-09 \
+Date:     2019-01-10 \
 Reply-to: Johel Guerrero <johelegp@gmail.com> \
 Audience: Library Incubator \
 Source:   https://github.com/johelegp/proposals/blob/master/is_clamped.md
@@ -22,7 +22,7 @@ except that `v` is only evaluated once.
 ## Revision history
 
 - _cv_ `void` -> R0
-    + `2019y/January/9`, pre-Kona.
+    + `2019y/January/10`, pre-Kona.
 
 ## Problem
 
@@ -60,6 +60,18 @@ such as member intializer lists and requires clauses.
 This works, at the cost of much syntactical noise on par with repeating `v`:
 - `[&] { const auto& w{v}; return `_`what we actually care about`_`; }()`, or
 - `[](const auto& v) { return `_`what we actually care about`_`; }(v)`.
+
+### Bikeshedding
+
+The following have been suggested of the proposed `std::is_clamped` design:
+- Different names.
+- Allowing arguments of different types.
+- Marking a bound as closed or half-open.
+
+However, we believe the proposed design was fixed
+once ISO/IEC 14882:2017 (C++17) was published with `std::clamp`.
+After all, we mean for `std::is_clamped` to complement `std::clamp`
+in the same way `std::is_sorted` complements `std::sort`.
 
 ## Wording
 
@@ -149,7 +161,7 @@ namespace ranges {
 
 Thanks to
 Ray Hamel
-for their comments in the std-proposals thread [5].
+and everyone else for their comments in the std-proposals thread [5].
 
 ## References
 
