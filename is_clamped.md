@@ -153,13 +153,6 @@ namespace ranges {
 }
 ```
 
-## Polls
-
-### Kona
-
-- Reword `ranges::is_clamped` to preserve the `Boolean` type of the
-  expression of the return statement in the possible implementation above.
-
 ## Related proposals
 
 | Paper     | Title                  | Relation                         |
