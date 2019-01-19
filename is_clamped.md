@@ -1,5 +1,5 @@
-Doc. no:  DxxxxR0 \
-Date:     2019-01-10 \
+Doc. no:  P1440R0 \
+Date:     2019-01-19 \
 Reply-to: Johel Guerrero <johelegp@gmail.com> \
 Audience: Library Incubator \
 Source:   https://github.com/johelegp/proposals/blob/master/is_clamped.md
@@ -22,7 +22,7 @@ except that `v` is only evaluated once.
 ## Revision history
 
 - _cv_ `void` -> R0
-    + `2019y/January/10`, pre-Kona.
+    + `2019y/January/19`, pre-Kona.
 
 ## Problem
 
