@@ -321,7 +321,7 @@ So thank you to everyone involved for making this possible.
 
 ## References
 
-[1] <https://github.com/nholthaus/units/issues/124#issuecomment-390773279> \
+[1] Show off the power of the new variadic dimensions system · Issue #124 · nholthaus/units, <https://github.com/nholthaus/units/issues/124#issuecomment-390773279> \
 [2] C++ Core Guidelines -- I.9: If an interface is a template, document its parameters using concepts, <https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Ri-concepts> \
 [3] C++ Core Guidelines -- T.concepts: Concept rules, <https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#SS-concepts> \
 [4] CppCon 2018: Bjarne Stroustrup “Concepts: The Future of Generic Programming (the future is here)”, <https://youtu.be/HddFGPTAmtU?t=3504> \
