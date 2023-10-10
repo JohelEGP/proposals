@@ -40,7 +40,7 @@ The vocabulary of the first subject area of the Electropedia [7],
 would serve as building blocks to solve these concerns.
 
 From there, Johel reviewed the feedback on P1813 [5] by the slides P2402 [8] and its proposal P1673 [9].
-The sections "design" and "improvements" explain the actions taken and thoughts had based on these reviews.
+The sections "design" and "evolution" explain the actions taken and thoughts had based on these reviews.
 
 The library then remained vitally unchanged for years.
 Johel had hardly advanced his own application in the meantime.
@@ -153,7 +153,7 @@ There also are homogeneous counterparts with a default.
 | `field_number_line` | `double`                           |
 | `scalar_number`     | `double` or `std::complex<double>` |
 
-## Improvements
+## Evolution
 
 Development is currently happening at [10]. <!-- This repetition is not accidental. -->
 
@@ -313,7 +313,7 @@ For now, please use the PDF at <https://github.com/mpusz/mp-units/pull/492#issue
 I'd like to thank Mateusz Pusz for encouraging me to write a paper about this number concepts library.
 
 I'd also like to thank him and the other reviewers of [10] for their stimulating feedback.
-It has brought back memories of the mostly unwritten history, design and improvements of these concepts.
+It has brought back memories of the mostly unwritten history, design and evolution of these concepts.
 
 All the advertised improvements over previous work
 is thanks to the existence of [5] and its feedback by [8] and [9].
