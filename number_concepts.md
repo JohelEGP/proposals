@@ -110,11 +110,11 @@ The feedback from [8] and [9] is that
 - associativity is over-constraining, and
 - users generally accept "associative enough".
 
-It occurred to us that we can work around this issue in the same way integer type division works.
+It occurred to us that we can work around this issue in the same way integer type division [32] works.
 `3 / 2` is conceptually carried out in real numbers, resulting in $1.5$.
 Then, the operator `/` yields $1.5$ with the fractional part discarded, resulting in `1`.
 
-_`addition-with`_ is specified similarly to integer type division.
+_`addition-with`_ is specified similarly to integer type division [32].
 That relaxes the associativity to "associative enough".
 _`addition-with`_ requires that `a + b` performs the addition [20] 𝘍 in an unspecified set.
 Then, it requires that `+` yields 𝘍 by mapping it to a value of the type of the result.
@@ -351,4 +351,5 @@ So thank you to everyone involved for making this possible.
 [28] [range.iota], <https://eel.is/c++draft/range.iota#concept:decrementable> \
 [29] [iterator.concept.winc], <https://eel.is/c++draft/iterator.concept.winc> \
 [30] [incrementable.traits], <https://eel.is/c++draft/incrementable.traits> \
-[31] mp-units/src/utility/include/mp-units/math.h at v2.0.0 · mpusz/mp-units, <https://github.com/mpusz/mp-units/blob/v2.0.0/src/utility/include/mp-units/math.h>
+[31] mp-units/src/utility/include/mp-units/math.h at v2.0.0 · mpusz/mp-units, <https://github.com/mpusz/mp-units/blob/v2.0.0/src/utility/include/mp-units/math.h> \
+[32] [expr.mul], <https://eel.is/c++draft/expr.mul#4.sentence-3>
