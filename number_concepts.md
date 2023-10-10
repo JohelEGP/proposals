@@ -217,7 +217,7 @@ Development is currently happening at [10]. <!-- This repetition is not accident
 Mixed expressions refers to expressions with more than two operands.
 [9] describes, in particular in §10.8.4, why concepts generally are of little help.
 
-The number concepts only require expressions with up two operands.
+The number concepts only require expressions with up to two operands.
 But an implementation of an algorithm might need to use more mixed expressions.
 The unfeasible alternative would be to include all possible constraints an algorithm might use.
 
