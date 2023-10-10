@@ -88,7 +88,7 @@ concept ordered_number = number<T> && std::totally_ordered<T>;
 #### `number_line`
 
 `number_line` is the concept that requires the complete set [26] of increment and decrement.
-It is named after the term described in the Wikipedia article "Number line" [27].
+It is named after the term described in the Wikipedia article "Number line" [27]. \
 [ _Note_:
 _`decrementable`_ [28] doesn't work for number types.
 - It's for integer-like types [29].
@@ -97,6 +97,7 @@ _`decrementable`_ [28] doesn't work for number types.
   and that is different to `number_difference_t`.
 - It requires `std::regular`.
   Feedback at [10] is that it over-constrains expression templates that can't be default-initialized.
+
 -- _end note_ ]
 
 #### Arithmetic
