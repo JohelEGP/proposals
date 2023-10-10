@@ -103,6 +103,7 @@ _`decrementable`_ [28] doesn't work for number types.
 #### Arithmetic
 
 Then follow the building blocks of the form (`compound_`)_`operation`_`_with`.
+
 _`addition-with`_ requires that `+` performs an addition [20].
 But addition is associative, i.e., $a + (b + c) = (a + b) + c$.
 The feedback from [8] and [9] is that
