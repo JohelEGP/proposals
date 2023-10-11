@@ -99,9 +99,14 @@ struct vector2d {
 But it doesn't require that adding squared \tcode{Number}s works.
 The best we could do is to add the additional constraint for the result of \tcode{Number} squared.
 It could be \cname{point_space}, the weakest constraint, as required by the algorithm.
-Or it could be \cname{scalar_number}, the same constraint as \tcode{Number}, as users would expect of the return type.
-In code, it would look like a trailing \tcode{requires \cname{scalar_number}<decltype(x * x)>}.
-That doesn't scale to mixed expressions with more operations.
+Or it could be \cname{scalar_number}, the same constraint as \tcode{Number}, as users would expect of the squared \tcode{Number}.
+There are similar expectations for the addition of the squared \tcode{Number}s.
+This doesn't scale to mixed expressions with more operations:
+\begin{codeblock}
+scalar_number auto square_magnitude() requires scalar_number<decltype(x * x)> {
+  return x * x + y * y;
+}
+\end{codeblock}
 
 \pnum
 One of the points \hrefVI{} summarizes is:
