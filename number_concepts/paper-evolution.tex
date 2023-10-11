@@ -72,14 +72,14 @@ The current design of this number concepts library doesn't consider generalizing
 \rSec1[paper.evo.mixed.expr]{Mixed expressions}
 
 \pnum
-Mixed expressions refers to expressions with more than two operands.
+A \term{mixed expression} is a \hrefXIV{mathematical expression} with more than one operation.
 \hrefVI{} describes,
 in particular in \href{https://wg21.link/P1673R12#generalizing-associativity-helps-little}{10.8.4},
 why concepts generally are of little help.
 
 \pnum
 The number concepts only require expressions with up to two operands.
-But an implementation of an algorithm might need to use more mixed expressions.
+But an implementation of an algorithm might need to use mixed expressions.
 The unfeasible alternative would be to include all possible constraints an algorithm might use.
 
 \pnum
@@ -101,7 +101,7 @@ The best we could do is to add the additional constraint for the result of \tcod
 It could be \cname{point_space}, the weakest constraint, as required by the algorithm.
 Or it could be \cname{scalar_number}, the same constraint as \tcode{Number}, as users would expect of the return type.
 In code, it would look like a trailing \tcode{requires \cname{scalar_number}<decltype(x * x)>}.
-That doesn't scale to even more mixed expressions.
+That doesn't scale to mixed expressions with more operations.
 
 \pnum
 One of the points \hrefVI{} summarizes is:
@@ -120,7 +120,7 @@ But that doesn't preclude constraining algorithms with number concepts.
 There is still value in \hrefII{I.9} and \hrefIII{T.concepts}.
 The number concepts in this library
 already don't require the result of addition to be associative\iref{paper.design.concepts.arithmetic}.
-It's also possible to require that mixed expression work as one would naturally expect.
+It's also possible to require that a mixed expression works as one would naturally expect.
 This can be done by adding an extra semantic requirement on refinements of \cname{number}.
 
 \pnum
