@@ -3,7 +3,7 @@
 This manual contains instructions on how to build the PDF.
 File paths in commands are relative to this directory.
 
-1. Generate: `cmake -S . -B <build directory>`
+1. Configure: `cmake -S . -B <build directory>`
 2. Build: `cmake --build <build directory> --target JohelEGP_Proposals_number_concepts-pdf`
 
 Specify these variables to avoid the network overhead.
