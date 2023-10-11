@@ -1,5 +1,5 @@
 set(document_number_header "Document Number")
-set(document_number "DxxxxR0") # Set the `cover_footer` to `""` when releasing a P-paper.
+set(document_number "D3003R0") # Set the `cover_footer` to `""` when releasing a P-paper.
 set(previous_document_number "DxxxxR0")
 # set(cover_footer "")
 set(cover_title "The design of a library of number concepts")
