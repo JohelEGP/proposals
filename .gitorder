@@ -1,0 +1,15 @@
+# git config diff.orderFile .gitorder
+number_concepts/README.md
+number_concepts/CMakeLists.txt
+number_concepts/macros_extensions.tex
+number_concepts/paper-revs.tex
+number_concepts/paper-intro.tex
+number_concepts/paper-history.tex
+number_concepts/paper-design.tex
+number_concepts/paper-evolution.tex
+number_concepts/paper-comparisons.tex
+number_concepts/paper-acknowledgements.tex
+number_concepts/paper-references.tex
+number_concepts/paper-api.tex
+number_concepts/intro.tex
+number_concepts/numbers.tex

@@ -1,0 +1,138 @@
+%!TEX root = std.tex
+
+
+\rSec0[paper.design]{Design}
+
+\rSec1[paper.design.overview]{Overview}
+
+\pnum
+We hope that this library encourages the development of well-specified generic components that operate on numbers.
+\ref{paper.design} summarizes what is precisely defined in \ref{paper.api}.
+Additionally, we discuss what might not be evident in that reference documentation.
+
+\rSec1[paper.design.traits]{Type traits}
+
+\pnum
+The type traits are mostly opt-in.
+They are:
+\begin{itemize}
+\item The \cname{number} opt-ins, \tcode{enable_number} and \tcode{enable_complex_number}.
+\item The identities, \tcode{number_zero} and \tcode{number_one}.
+\item The associated types, \tcode{number_difference_t} and \tcode{vector_scalar_t}.
+\end{itemize}
+
+\pnum
+They are based on existing practice.
+That is evident for the first two groups in \ref{paper.api}.
+Like \tcode{std::iter_reference_t} and \tcode{std::ranges::range_value_t},
+the associated types are named \tcode{\placeholder{kind-of-structure}_\placeholder{associated-type}_t}.
+
+\rSec1[paper.design.concepts]{Concepts}
+
+\rSec2[paper.design.concepts.num]{\cname{number}, common with, ordered}
+
+\pnum
+\cname{number} is the least constrained number concept.
+Then, there are the simple \cname{common_number_with} and \cname{ordered_number}.
+\begin{codeblock}
+template<typename T>
+concept number = enable_number_v<T> && std::regular<T>;
+
+template<typename T, typename U>
+concept common_number_with =
+  number<T> && number<U> && std::common_with<T, U> && number<std::common_type_t<T, U>>;
+
+template<typename T>
+concept ordered_number = number<T> && std::totally_ordered<T>;
+\end{codeblock}
+
+\rSec2[paper.design.concepts.num.line]{\cname{number_line}}
+
+\pnum
+\cname{number_line} is the concept that requires the \hrefVIII{complete set} of increment and decrement.
+It is named after the term described in \hrefIX{the Wikipedia article ``Number line''}.
+\begin{note}
+\ecname{decrementable}\irefcppx{range.iota}{concept:decrementable} doesn't work for number types.
+\begin{itemize}
+\item
+It's for integer-like types\irefcpp{iterator.concept.winc}.
+Or we'd have to specialize \tcode{std::incrementable_traits}\irefcpp{incrementable.traits}
+with a \tcode{difference_type} that is an integer-like type
+and that is different to \tcode{number_difference_t}\iref{num.assoc.types}.
+\item
+It requires \tcode{std::\cname{regular}}.
+Feedback at \hrefVII{} is that it over-constrains expression templates that can't be default-initialized.
+\end{itemize}
+\end{note}
+
+\rSec2[paper.design.concepts.arithmetic]{Arithmetic}
+
+\pnum
+Then follow the building blocks of the form \cname{\opt{compound_}\placeholder{operation}_with}.
+
+\pnum
+\ecname{addition-with} requires that \tcode{+} performs an addition\irefiev{102-01-11}.
+But addition is associative, i.e., $a + (b + c) = (a + b) + c$.
+The feedback from \refp{2402} and \hrefVI{} is that
+\begin{itemize}
+\item associativity is over-constraining, and
+\item users generally accept ``associative enough''.
+\end{itemize}
+
+\pnum
+It occurred to us that we can work around this issue in the same way integer type division\irefcppx{expr.mul}{4.sentence-3} works.
+\tcode{3 / 2} is conceptually carried out in real numbers, resulting in $1.5$.
+Then, the operator \tcode{/} yields $1.5$ with the fractional part discarded, resulting in \tcode{1}.
+
+\pnum
+\ecname{addition-with} is specified similarly to integer type division.
+That relaxes the associativity to ``associative enough''.
+\ecname{addition-with} requires that \tcode{a + b} performs the addition $F$ in an unspecified set.
+Then, it requires that \tcode{+} yields $F$ by mapping it to a value of the type of the result.
+
+\pnum
+First, we introduce an unspecified set.
+The over-constraining associative addition is done in this unspecified set.
+Then, we introduce a mapping from the addition to the result of \tcode{+}.
+The mapping is left unspecified, so the result isn't over-constrained.
+
+\pnum
+The operations required by refinements of \cname{number} are specified similarly.
+
+\rSec2[paper.design.concepts.terse]{Terse}
+
+\pnum
+Some concepts ending in \tcode{_for} just require a single concept ending in \tcode{_with} with inverted arguments.
+\begin{codeblock}
+template<typename T, typename U>
+concept modulus_for = modulo_with<U, T>;
+template<typename T, typename U>
+concept vector_space_for = point_space_for<U, T>;
+\end{codeblock}
+These enable the terse concept syntax.
+\begin{example}
+\begin{codeblock}
+template<vector_space_for<Number> Number2> auto& operator+=(vector<Number2>);
+auto operator%(modulus_for<Number> auto);
+\end{codeblock}
+\end{example}
+
+\rSec2[paper.design.concepts.algebraic]{Algebraic structures}
+
+\pnum
+Finally, the building blocks are used to define some helpers.
+These helpers are used to define heterogeneous concepts on algebraic structures.
+There also are homogeneous counterparts with a default.
+
+\begin{simpletypetable}
+{Examples of models of algebraic structure concepts}
+{paper.design.concepts.algebraic}
+{ll}
+\topline
+\lhdr{Concept}            & \rhdr{Close model}                              \\ \capsep
+\cname{point_space}       & \tcode{std::chrono::sys_seconds}                \\
+\cname{f_vector_space}    & \tcode{std::chrono::seconds}                    \\
+\cname{field_number}      & \tcode{std::complex<double>}                    \\
+\cname{field_number_line} & \tcode{double}                                  \\
+\cname{scalar_number}     & \tcode{double} or \tcode{std::complex<double>}  \\
+\end{simpletypetable}

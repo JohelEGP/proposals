@@ -1,0 +1,168 @@
+%!TEX root = std.tex
+
+
+\rSec0[paper.evo]{Evolution}
+
+\rSec1[paper.evo.relax]{Relax to generalize}
+
+\pnum
+The concepts are known to be over-constraining for templates like \hrefX{\tcode{boost::hana::int_c}}.
+The feedback from \hrefVII{} suggests its time for the hierarchy to be refactored.
+This will allow a wider variety of number templates that make interesting uses of the type system.
+\wheredevelisat
+
+\rSec1[paper.evo.ops]{More operations}
+
+\pnum
+There are operations beyond those required by the definition of a vector space\irefiev{102-03-01}.
+
+\pnum
+\refpx{2980R0}{systems-of-quantities} needs some of those to specify some quantities.
+Just like there are scalar quantities\irefiev{102-02-19}, there are vector and tensor quantities.
+An example is speed\irefiev{113-01-33} (a scalar quantity),
+defined as the magnitude\irefiev{102-03-23} of the velocity\irefiev{113-01-32} (a vector quantity).
+Here are other operations from \hrefXI{}:
+\begin{codeblock}
+template<typename T>
+concept VectorRepresentation = /* ... */ &&
+  requires(T a, T b, /* ... */) {
+    /* ... */
+    { dot_product(a, b) } -> Scalar;
+    { cross_product(a, b) } -> Vector;
+    { tensor_product(a, b) } -> Tensor;
+    { norm(a) } -> Scalar;
+  };
+template<typename T>
+concept TensorRepresentation = /* ... */ &&
+  requires(T a, T b, /* ... */) {
+    /* ... */
+    { tensor_product(a, b) } -> Tensor;
+    { inner_product(a, b) } -> Tensor;
+    { scalar_product(a, b) } -> Scalar;
+  };
+\end{codeblock}
+
+\pnum
+Scalars, vectors, and tensors are vector spaces\irefiev{102-03-01}.
+The number concepts library has \cname{scalar_number}\iref{num.concepts}, which represents a scalar\irefiev{102-02-18}.
+\cname{vector_space} could be refined with these additional operations to support vectors and tensors.
+
+\pnum
+But vector is an overloaded word.
+\hrefXII{Its Wikipedia article} says
+\begin{quote}
+In mathematics and physics,
+vector is a term that refers colloquially to some quantities
+that cannot be expressed by a single number (a scalar),
+or to elements of some vector spaces.
+\end{quote}
+\cname{vector_space} can be renamed to its alternative term \cname{linear_space}.
+Then, we could add \cname{vector} for the colloquial "tuple of 2 or more scalars" and \cname{tensor} as refinements.
+
+\pnum
+The \Cpp{} standard library offers many more operations on arithmetic types,
+which are models of \cname{scalar_number}.
+\hrefXIII{mp-units also offers a subset of those for \tcode{mp_units::quantity}},
+whose specializations model \cname{vector_space}.
+The current design of this number concepts library doesn't consider generalizing this.
+
+\pnum
+\wheredevelisat
+
+\rSec1[paper.evo.mixed.expr]{Mixed expressions}
+
+\pnum
+Mixed expressions refers to expressions with more than two operands.
+\hrefVI{} describes,
+in particular in \href{https://wg21.link/P1673R12#generalizing-associativity-helps-little}{10.8.4},
+why concepts generally are of little help.
+
+\pnum
+The number concepts only require expressions with up to two operands.
+But an implementation of an algorithm might need to use more mixed expressions.
+The unfeasible alternative would be to include all possible constraints an algorithm might use.
+
+\pnum
+For example, the magnitude of a 2-dimensional Cartesian vector is $|\vec{v}| = \sqrt{x^2 + y^2}$\irefiev{102-03-23}.
+Consider a \Cpp{} representation like this:
+\begin{codeblock}
+template<scalar_number Number>
+struct vector2d {
+  Number x;
+  Number y;
+
+  // A faster alternative when just ordering by magnitude.
+  auto square_magnitude() { return x * x + y * y; }
+};
+\end{codeblock}
+\cname{scalar_number} requires that the type of \tcode{Number} squared models \tcode{\cname{common_number_with}<Number>}.
+But it doesn't require that adding squared \tcode{Number}s works.
+The best we could do is to add the additional constraint for the result of \tcode{Number} squared.
+It could be \cname{point_space}, the weakest constraint, as required by the algorithm.
+Or it could be \cname{scalar_number}, the same constraint as \tcode{Number}, as users would expect of the return type.
+In code, it would look like a trailing \tcode{requires \cname{scalar_number}<decltype(x * x)>}.
+That doesn't scale to even more mixed expressions.
+
+\pnum
+One of the points \hrefVI{} summarizes is:
+\begin{quote}
+\begin{itemize}
+\item
+We can and do use existing Standard language, like \tcode{\placeholder{GENERALIZED_SUM}},
+for expressing permissions that algorithms have.
+\end{itemize}
+\end{quote}
+For \tcode{\placeholder{GENERALIZED_SUM}}, see \refcpp{numeric.ops}.
+We agree with \hrefVI{} on this point.
+But that doesn't preclude constraining algorithms with number concepts.
+
+\pnum
+There is still value in \hrefII{I.9} and \hrefIII{T.concepts}.
+The number concepts in this library
+already don't require the result of addition to be associative\iref{paper.design.concepts.arithmetic}.
+It's also possible to require that mixed expression work as one would naturally expect.
+This can be done by adding an extra semantic requirement on refinements of \cname{number}.
+
+\pnum
+How to deal with this lies in the use of \cname{common_number_with} in refinements of \cname{number}.
+\tcode{\cname{common_number_with}<T, U>} subsumes \tcode{std::\cname{common_with}<T, U>}\irefcpp{concept.common}.
+Although it's not part of \tcode{std::\cname{common_width}},
+\tcode{std::common_type_t<T, U>} also generally behaves like \tcode{T} and \tcode{U}.
+
+\pnum
+This is the idea for the semantic requirement on refinements of \cname{number}.
+If \tcode{\cname{common_number_with}<T, U>} is required,
+the user can use \tcode{T} in place of \tcode{U}, and
+the semantic constraints on \tcode{U} also apply to \tcode{T}.
+
+\pnum
+With this requirement in mind, let's reconsider this example:
+\begin{codeblock}
+auto square_magnitude() { return x * x + y * y; }
+\end{codeblock}
+\tcode{\cname{scalar_number}<Number>} requires:
+\begin{codeblock}
+{ c * u } -> common_number_with<V>;
+\end{codeblock}
+That's essentially:
+\begin{codeblock}
+{ x * x } -> common_number_with<Number>;
+\end{codeblock}
+Even if the type of \tcode{Number} squared isn't the same as \tcode{Number},
+the semantic constraints of \tcode{\cname{scalar_number}<decltype(x * x)>} apply
+when the user writes one of its required expressions.
+In this case, the algorithm is required to work as expected.
+
+\pnum
+It is the intent that this doesn't preclude the \tcode{+} on squared \tcode{Number}s from being ill-formed.
+It is also the intent that the \tcode{+} on squared \tcode{Number}s
+is still not required to be a total function\irefcppx{structure.requirements}{8}
+or to be valid for all input values\irefcppx{concepts.equality}{2}.
+I.e., the result can still be incorrect or exit via an exception.
+
+\pnum
+The worth of this formulation is that you can meet \hrefII{I.9} and \hrefIII{T.concepts}.
+Even if an algorithm still needs to be more specific, as with \tcode{\placeholder{GENERALIZED_SUM}}.
+
+\pnum
+\wheredevelisat

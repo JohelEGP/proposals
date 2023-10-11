@@ -1,0 +1,41 @@
+%!TEX root = std.tex
+
+
+\rSec0[paper.history]{History}
+
+\pnum
+\hrefI{After finding the pixel}, Johel wrote generic components on numbers.
+But those components failed to abide to the \Cpp{} Core Guidelines'
+\begin{itemize}
+\item \hrefII{I.9: If an interface is a template, document its parameters using concepts} and
+\item \hrefIII{T.concepts: Concept rules}.
+\end{itemize}
+
+\pnum
+So Johel armed himself with GCC's Concepts TS support,
+and eventually the LLVM fork with \Cpp{} standard concepts.
+He took the \tcode{Number} concept from \hrefIV{Bjarne's presentation} as a starting point.
+His main concerns then were to
+\begin{itemize}
+\item specify the semantics and
+\item to refactor it to support \tcode{std::chrono}'s \tcode{duration} and \tcode{time_point}.
+\end{itemize}
+
+\pnum
+He stumbled upon \refcppx{intro.defs}{2.2} while looking for an answer to these concerns.
+The vocabulary of the first subject area of the Electropedia,
+\hrefV{Mathematics - General concepts and linear algebra},
+would serve as building blocks to solve these concerns.
+
+\pnum
+From there, Johel reviewed the feedback on \refp{1813} by the slides \refp{2402} and its proposal \hrefVI{}.
+\ref{paper.design} and \ref{paper.evo} explain the actions taken and thoughts had based on these reviews.
+
+\pnum
+The library then remained vitally unchanged for years.
+Johel had hardly advanced his own application in the meantime.
+That is what had spurred the inception and growth of the library.
+
+\pnum
+Finally, on 2023-09-21, this library was proposed for merging into the mp-units library~(\hrefVII{}).
+This spurred a revitalization on the improvement of the design of the library.

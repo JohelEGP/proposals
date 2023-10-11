@@ -1,0 +1,23 @@
+%!TEX root = std.tex
+
+
+\rSec0[paper.cmp]{Comparisons}
+
+\rSec1[paper.p1813]{P1813}
+
+\pnum
+The algorithms from \tcode{<numeric>} still don't have constrained counterparts in \Cpp{}23's \tcode{std::ranges}.
+\refp{1813} aimed to remedy that.
+Its approach to specifying algebraic structures was bottom-up.
+The feedback \refp{2402} and \hrefVI{} gave was that this is over-constraining.
+
+\pnum
+This paper's approach is instead top-down.
+Having started from Bjarne's \tcode{Number}\iref{paper.history},
+we have refactored the existing concepts as needs arise.
+
+\pnum
+\tcode{<numeric>} algorithms work with numeric expressions or have overloads with function objects.
+The precise suitability of our number concepts for constrained overloads hasn't been studied.
+The unconstrained versions \tcode{std::accumulate} already allows accumulating on a \tcode{std::string}.
+We would expect its constrained version to allow the same.
