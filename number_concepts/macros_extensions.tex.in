@@ -33,7 +33,7 @@
 \newcommand{\hrefVIII}[1]{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#Rt-complete}{#1}}
 \newcommand{\hrefIX}[1]{\href{https://en.wikipedia.org/wiki/Number_line}{#1}}
 \newcommand{\hrefX}[1]{\href{https://www.boost.org/doc/libs/1_83_0/libs/hana/doc/html/structboost_1_1hana_1_1integral__constant.html\#autotoc_md0}{#1}}
-\newcommand{\hrefXI}[1]{\href{https://github.com/mpusz/mp-units/pull/493}{mpusz/mp-units\#493}{#1}}
+\newcommand{\hrefXI}[1]{\href{https://github.com/mpusz/mp-units/pull/493}{\ghlogo{} mpusz/mp-units\#493}{#1}}
 \newcommand{\hrefXII}[1]{\href{https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)}{#1}}
 \newcommand{\hrefXIII}[1]{\href{https://github.com/mpusz/mp-units/blob/v2.0.0/src/utility/include/mp-units/math.h}{#1}}
 \newcommand{\hrefXIV}[1]{\href{https://en.wikipedia.org/wiki/Expression_(mathematics)}{#1}}
