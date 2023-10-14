@@ -12,9 +12,9 @@ set(GitHub_Logo "${github_logos_SOURCE_DIR}/github-mark/github-mark.png")
 configure_file("macros_extensions.tex.in" "${CMAKE_CURRENT_SOURCE_DIR}/macros_extensions.tex")
 
 set(document_number_header "Document Number")
-set(document_number "D3003R0") # Set the `cover_footer` to `""` when releasing a P-paper.
-set(previous_document_number "DxxxxR0")
-# set(cover_footer "")
+set(document_number "P3003R0") # Set the `cover_footer` to `""` when releasing a P-paper.
+set(previous_document_number "D3003R0")
+set(cover_footer "")
 set(cover_title "The design of a library of number concepts")
 set(pdf_title "${document_number} ${cover_title}")
 set(pdf_subject "C++ Standards Committee Papers")
