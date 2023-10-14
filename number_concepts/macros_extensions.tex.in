@@ -24,13 +24,13 @@
 \newcommand{\irefiev}[1]{\nolinebreak[3] (\refiev{#1})}
 
 \newcommand{\hrefI}[1]{\href{https://github.com/nholthaus/units/issues/124\#issuecomment-390773279}{#1}}
-\newcommand{\hrefII}[1]{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#Ri-concepts}{#1}}
-\newcommand{\hrefIII}[1]{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#SS-concepts}{#1}}
+\newcommand{\hrefII}[1]{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#Ri-concepts}{\ccglogo{} #1}}
+\newcommand{\hrefIII}[1]{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#SS-concepts}{\ccglogo{} #1}}
 \newcommand{\hrefIV}[1]{\href{https://youtu.be/HddFGPTAmtU?t=3504}{#1}}
 \newcommand{\hrefV}[1]{\href{https://www.electropedia.org/iev/iev.nsf/index?openform&part=102}{#1}}
 \newcommand{\hrefVI}[1]{\refpx{1673R12}{constraining-matrix-and-vector-element-types-and-scalars}{#1}}
 \newcommand{\hrefVII}[1]{\href{https://github.com/mpusz/mp-units/pull/492}{\ghlogo{} mpusz/mp-units\#492}{#1}}
-\newcommand{\hrefVIII}[1]{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#Rt-complete}{#1}}
+\newcommand{\hrefVIII}[1]{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#Rt-complete}{\ccglogo{} #1}}
 \newcommand{\hrefIX}[1]{\href{https://en.wikipedia.org/wiki/Number_line}{#1}}
 \newcommand{\hrefX}[1]{\href{https://www.boost.org/doc/libs/1_83_0/libs/hana/doc/html/structboost_1_1hana_1_1integral__constant.html\#autotoc_md0}{#1}}
 \newcommand{\hrefXI}[1]{\href{https://github.com/mpusz/mp-units/pull/493}{\ghlogo{} mpusz/mp-units\#493}{#1}}
@@ -40,3 +40,4 @@
 \newcommand{\hrefXV}[1]{\href{https://github.com/JohelEGP/jegp.numbers}{\ghlogo{} JohelEGP/jegp.numbers}{#1}}
 
 \newcommand{\ghlogo}{\includegraphics[width=1em]{@GitHub_Logo@}}
+\newcommand{\ccglogo}{\includegraphics[width=1em]{@CppCoreGuidelines_Logo@}}

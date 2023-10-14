@@ -1,5 +1,12 @@
 FetchContent_Declare(GitHub_Logos URL "https://github.githubassets.com/images/modules/logos_page/github-mark.zip")
 FetchContent_MakeAvailable(GitHub_Logos)
+file(DOWNLOAD "https://github.com/isocpp/CppCoreGuidelines/blob/gh-pages/cpp_core_guidelines_16b.png?raw=true"
+     "CppCoreGuidelines_Logo.png"
+     EXPECTED_HASH
+       SHA512=189ee8b298be1cb151df682f26800c178833d2482f79fbf4e06211090aaab2885d32543cb640c3e9d14c8f4513587441a2eea15630a7c11741a24227f5d5ef7d
+)
+
+set(CppCoreGuidelines_Logo "${CMAKE_CURRENT_BINARY_DIR}/../CppCoreGuidelines_Logo.png")
 set(GitHub_Logo "${github_logos_SOURCE_DIR}/github-mark/github-mark.png")
 
 configure_file("macros_extensions.tex.in" "${CMAKE_CURRENT_SOURCE_DIR}/macros_extensions.tex")
