@@ -29,11 +29,11 @@ the associated types are named \tcode{\placeholder{kind-of-structure}_\placehold
 
 \rSec1[paper.design.concepts]{Concepts}
 
-\rSec2[paper.design.concepts.num]{\cname{number}, common with, ordered}
+\rSec2[paper.design.concepts.utils]{Utilities}
 
 \pnum
 \cname{number} is the least constrained number concept.
-Then, there are the simple \cname{common_number_with} and \cname{ordered_number}.
+\cname{common_number_with} is used to relate similar types.
 \begin{codeblock}
 template<typename T>
 concept number = enable_number_v<T> && std::regular<T>;
@@ -41,12 +41,12 @@ concept number = enable_number_v<T> && std::regular<T>;
 template<typename T, typename U>
 concept common_number_with =
   number<T> && number<U> && std::common_with<T, U> && number<std::common_type_t<T, U>>;
-
-template<typename T>
-concept ordered_number = number<T> && std::totally_ordered<T>;
 \end{codeblock}
 
-\rSec2[paper.design.concepts.num.line]{\cname{number_line}}
+\rSec2[paper.design.concepts.order]{Ordering}
+
+\pnum
+\cname{ordered_number} requires a model of \tcode{std::\cname{totally_ordered}}.
 
 \pnum
 \cname{number_line} is the concept that requires the \hrefVIII{complete set} of increment and decrement.
