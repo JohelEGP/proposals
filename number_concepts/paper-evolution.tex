@@ -9,7 +9,6 @@
 The concepts are known to be over-constraining for templates like \hrefX{\tcode{boost::hana::int_c}}.
 The feedback from \hrefVII{} suggests its time for the hierarchy to be refactored.
 This will allow a wider variety of number templates that make interesting uses of the type system.
-\wheredevelisat
 
 \rSec1[paper.evo.ops]{More operations}
 
@@ -65,9 +64,6 @@ which are models of \cname{scalar_number}.
 \hrefXIII{mp-units also offers a subset of those for \tcode{mp_units::quantity}},
 whose specializations model \cname{vector_space}.
 The current design of this number concepts library doesn't consider generalizing this.
-
-\pnum
-\wheredevelisat
 
 \rSec1[paper.evo.mixed.expr]{Mixed expressions}
 
@@ -168,6 +164,3 @@ I.e., the result can still be incorrect or exit via an exception.
 \pnum
 The worth of this formulation is that you can meet \hrefII{I.9} and \hrefIII{T.concepts}.
 Even if an algorithm still needs to be more specific, as with \tcode{\placeholder{GENERALIZED_SUM}}.
-
-\pnum
-\wheredevelisat
