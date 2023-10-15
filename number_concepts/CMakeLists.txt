@@ -12,9 +12,19 @@ set(GitHub_Logo "${github_logos_SOURCE_DIR}/github-mark/github-mark.png")
 configure_file("macros_extensions.tex.in" "${CMAKE_CURRENT_SOURCE_DIR}/macros_extensions.tex")
 
 set(document_number_header "Document Number")
-set(document_number "P3003R0") # Set the `cover_footer` to `""` when releasing a P-paper.
+set(document_number "P3003R0")
 set(previous_document_number "D3003R0")
-set(cover_footer "")
+
+set(document_number_regex_suffix "[0-9][0-9][0-9][0-9]R[0-9]")
+if(document_number MATCHES "P${document_number_regex_suffix}")
+  set(cover_footer "")
+endif()
+foreach(var IN ITEMS document_number previous_document_number)
+  if(NOT (${var} MATCHES "[PD]${document_number_regex_suffix}"))
+    message(FATAL_ERROR "Document number \"${${var}}\" does not match \"[PD]${document_number_regex_suffix}\".")
+  endif()
+endforeach()
+
 set(cover_title "The design of a library of number concepts")
 set(pdf_title "${document_number} ${cover_title}")
 set(pdf_subject "C++ Standards Committee Papers")
