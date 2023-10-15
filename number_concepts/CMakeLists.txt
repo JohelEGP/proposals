@@ -12,8 +12,8 @@ set(GitHub_Logo "${github_logos_SOURCE_DIR}/github-mark/github-mark.png")
 configure_file("macros_extensions.tex.in" "${CMAKE_CURRENT_SOURCE_DIR}/macros_extensions.tex")
 
 set(document_number_header "Document Number")
-set(document_number "P3003R0")
-set(previous_document_number "D3003R0")
+set(document_number "D3003R1")
+set(previous_document_number "P3003R0")
 
 set(document_number_regex_suffix "[0-9][0-9][0-9][0-9]R[0-9]")
 if(document_number MATCHES "P${document_number_regex_suffix}")
