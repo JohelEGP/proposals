@@ -62,6 +62,9 @@ and that is different to \tcode{number_difference_t}\iref{num.assoc.types}.
 \item
 It requires \tcode{std::\cname{regular}}.
 Feedback at \hrefVII{} is that it over-constrains expression templates that can't be default-initialized.
+\item
+It requires that \tcode{++i} advances \tcode{i} to the next element.
+Numbers require that \tcode{++i} adds \tcode{number_one_v<I>} to \tcode{i}.
 \end{itemize}
 \end{note}
 
